@@ -1,5 +1,5 @@
-import CreateTaskRoot from "@/components/createTask/createTaskRoot";
-import TaskRoot from "@/components/task/taskRoot";
+import TaskSection from "@/components/TaskSection/taskSection.jsx";
+import CreateTaskRoot from "@/components/createTask/createTaskRoot.jsx";  
 
 export default function Home() {
   return (
@@ -12,10 +12,7 @@ export default function Home() {
       <h1 className="font-semibold text-xl">TO-DO📚</h1>
 
       <CreateTaskRoot />
-
-      <TaskRoot text="kkkkk"/>
-      <TaskRoot text="kkkkkk nem fucking"/>
-      <TaskRoot text="kkkkkkkkkk whatsapp"/>
+      <TaskSection />
 
     </main>
   );

@@ -1,5 +1,3 @@
-import { ReactNode } from "react";
-
 interface taskProps {
 		text: string;    
 }
@@ -7,7 +5,7 @@ interface taskProps {
 export default function TaskRoot({ text }: taskProps) {
 	return (
 		<div className="
-		flex bg-zinc-900 p-3 border-[1px] border-zinc-600
+		flex bg-zinc-800 p-3 border-[1px] border-zinc-500
 		rounded-lg text-sm font-normal w-full
 		">
 			<span>{text}</span>
