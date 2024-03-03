@@ -1,5 +1,5 @@
-import TaskSection from "@/components/TaskSection/taskSection.jsx";
-import CreateTaskRoot from "@/components/createTask/createTaskRoot.jsx";  
+import TaskSection from "@/components/TaskSection/taskSection.tsx";
+import CreateTaskRoot from "@/components/createTask/createTaskRoot";  
 
 export default function Home() {
   return (
