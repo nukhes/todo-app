@@ -6,24 +6,24 @@ import Input from "../ui-misc/input";
 import { NewTask, taskArray } from "../TaskSection/taskSection";
 import { useState } from "react";
 
-export var taskKey: string;
 export default function CreateTaskRoot() {
 
-	var [taskValue, setValue] = useState("");
-
-	function HandleInput(event: any) {
-		setValue(event.target.value);
-	}
+	var [taskInput, setTaskInput] = useState('');
+	
 	
 	return (
 		<div className="p-2 flex gap-1">
 
-			<Input value={taskValue} onChange={HandleInput} placeholder="Nova tarefa..."/>
-			<Button icon={<IoIosAdd />} onClick={() => {
+			<Input value={taskInput} onChange={(e: any) => {
 				
-				// TODO: VERIFICAR SE A TASK FOR REPETIDA
-				(taskValue.length > 0) ? NewTask(taskValue, taskKey) : console.log("insira texto no input da task!");
-				taskKey = taskArray.length;
+				setTaskInput(e.target.value);
+
+			}} placeholder="Nova tarefa..."/>
+			<Button icon={<IoIosAdd />} onClick={() => {
+
+				var taskKey: string = taskArray.length;
+				(taskInput.length > 0) ? NewTask(taskInput, taskKey) : console.log("insira texto no input da task!");
+
 			}}/>
 
 		</div>

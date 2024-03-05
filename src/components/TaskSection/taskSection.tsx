@@ -1,19 +1,21 @@
 'use client'
 
 import TaskRoot from "@/components/task/taskRoot";
-import React, { useState, ReactNode, useEffect, SetStateAction } from "react";
-import { taskKey } from "../createTask/createTaskRoot";
+import React, { useState, ReactNode, useEffect } from "react";
 
 export var taskArray: any = [];
 
-export function Task(this: any, text: string, key: string) {
-  this.text = text;
-  this.key = key;
-  this.state = true; 
-}
-
+// Create a new task and push to array
 export function NewTask(value: string, key: string) {
-  taskArray.push(new (Task as any)(value));
+
+  function Task(this: any) {
+    this.text = value;
+    this.key = key;
+    this.state = true; 
+  }
+
+  taskArray.push(new (Task as any));
+
   console.log(`task criada com sucesso\n conteudo: ${value}\n key: ${key}`);
   console.log(taskArray);
 }
@@ -23,11 +25,13 @@ export default function TaskSection() {
 
   useEffect(() => {
     setTasks((): any => {
+
       var tasksNode: ReactNode = taskArray.map((element: any) => {
         return <TaskRoot key={element.key} text={element.text}/>;
       }); 
     
       return tasksNode;
+      
     });
   });
 
