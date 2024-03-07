@@ -1,5 +1,5 @@
-import TaskSection from "@/components/TaskSection/taskSection.tsx";
-import CreateTaskRoot from "@/components/createTask/createTaskRoot";  
+import TaskSection from "@/components/TaskSection/taskSection";
+//import CreateTaskRoot from "@/components/createTask/createTaskRoot";  
 
 export default function Home() {
   return (
@@ -11,7 +11,7 @@ export default function Home() {
     ">
       <h1 className="font-semibold text-xl">TO-DO📚</h1>
 
-      <CreateTaskRoot />
+      
       <TaskSection />
 
     </main>
