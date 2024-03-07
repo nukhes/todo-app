@@ -39,24 +39,20 @@ export default function TaskSection() {
   }
 
   return (
-    <div>
+    <div className="w-full flex flex-col">
+
       <div className="p-2 flex gap-1">
+        <Input value={taskInput} onChange={(e: any) => {
+          setTaskInput(e.target.value);
+        }} placeholder="Nova tarefa..."/>
 
-      <Input value={taskInput} onChange={(e: any) => {
-        setTaskInput(e.target.value);
-      }} placeholder="Nova tarefa..."/>
-
-      <Button icon={<IoIosAdd />} onClick={() => {
-        const taskKey: string = taskArray.length;
-        RefreshTasks();
-        (taskInput.length > 0) ? NewTask(taskInput, taskKey) : console.log("insira texto no input da task!");
-      }}/>
-
+        <Button icon={<IoIosAdd />} onClick={() => {
+          RefreshTasks();
+          (taskInput.length > 0) ? NewTask(taskInput, taskArray.length) : console.log("insira texto no input da task!");
+        }}/>
       </div>
 
-      <div className="flex flex-col gap-2 w-full bg-zinc-700 p-3 rounded-lg">
-      {tasks}
-      </div>
+      <div className="flex flex-col gap-2 w-full bg-zinc-700 p-3 rounded-lg">{tasks}</div>
 
     </div>
   );
