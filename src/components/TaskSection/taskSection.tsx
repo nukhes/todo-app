@@ -31,7 +31,7 @@ export default function TaskSection() {
     setTasks((): any => {
 
       var tasksNode: ReactNode = taskArray.map((element: any) => {
-        return <TaskRoot key={element.key} text={element.text}/>;
+        return <TaskRoot keyLocal={element.key} text={element.text} />;
       }); 
     
       return tasksNode;
@@ -40,7 +40,7 @@ export default function TaskSection() {
 
   function CreateNewTaskButton() {
     RefreshTasks();
-    (taskInput.length > 0) ? NewTask(taskInput, taskArray.length) : console.log("insira texto no input da task!");
+    taskInput.length > 0 ? NewTask(taskInput, taskArray.length) : console.log("insira texto no input da task!");
   }
 
   return (
