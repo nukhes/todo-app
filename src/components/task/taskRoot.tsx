@@ -45,12 +45,7 @@ export default function TaskRoot({ text, keyLocal}: taskProps) {
 			<div className="flex gap-2 items-center">
 
 				{TaskDeleteButton}
-				
-				<input type="checkbox" className="
-				w-8 h-8 form-checkbox
-				bg-zinc-950 rounded-lg
-				checked:bg-purple-700
-				" onClick={TaskCheckBoxOnClick} />
+				<input type="checkbox" className="w-8 h-8" onClick={TaskCheckBoxOnClick} />
 
 			</div> 
 
