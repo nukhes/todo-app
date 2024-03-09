@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 
 interface buttonProps {
   icon: ReactNode;
-  onClick: any;
+  onClick?: any;
 }
 
 export default function Button({ icon, onClick }: buttonProps) {

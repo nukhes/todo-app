@@ -1,10 +1,11 @@
 'use client'
 
-import TaskRoot from "@/components/task/taskRoot";
-import React, { useState, ReactNode, useEffect } from "react";
+import React, { useState, ReactNode } from "react";
 import { IoIosAdd } from "react-icons/io";
+import TaskRoot from "@/components/task/taskRoot";
 import Button from "../ui-misc/button";
 import Input from "../ui-misc/input";
+
 
 export var taskArray: any = [];
 
@@ -24,7 +25,7 @@ export function NewTask(value: string, key: string) {
 
 export default function TaskSection() {
   const [tasks, setTasks] = useState();
-  var [taskInput, setTaskInput] = useState('');
+  const [taskInput, setTaskInput] = useState('');
 
   function RefreshTasks() {
     setTasks((): any => {
@@ -34,25 +35,28 @@ export default function TaskSection() {
       }); 
     
       return tasksNode;
-      
     });
   }
 
-  return (
-    <div className="w-full flex flex-col">
+  function CreateNewTaskButton() {
+    RefreshTasks();
+    (taskInput.length > 0) ? NewTask(taskInput, taskArray.length) : console.log("insira texto no input da task!");
+  }
 
-      <div className="p-2 flex gap-1">
+  return (
+    <div className="w-full flex flex-col gap-2">
+
+      <div className="p-2 flex gap-1 w-full justify-center">
         <Input value={taskInput} onChange={(e: any) => {
           setTaskInput(e.target.value);
         }} placeholder="Nova tarefa..."/>
 
-        <Button icon={<IoIosAdd />} onClick={() => {
-          RefreshTasks();
-          (taskInput.length > 0) ? NewTask(taskInput, taskArray.length) : console.log("insira texto no input da task!");
-        }}/>
+        <Button icon={<IoIosAdd />} onClick={CreateNewTaskButton}/>
       </div>
 
-      <div className="flex flex-col gap-2 w-full bg-zinc-700 p-3 rounded-lg">{tasks}</div>
+      <div className="flex flex-col gap-2 w-full bg-zinc-700 p-3 rounded-lg">
+        {tasks}
+      </div>
 
     </div>
   );
