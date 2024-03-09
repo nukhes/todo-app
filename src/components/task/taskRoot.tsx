@@ -1,7 +1,7 @@
 import { MdDelete } from "react-icons/md";
 import Button from "../ui-misc/button";
-import { ReactNode, useState } from "react";
-import { taskArray } from "../TaskSection/taskSection";
+import { ReactNode, useContext, useState } from "react";
+import { DeleteTask, RefreshTasks, TasksContext, taskArray } from "../TaskSection/taskSection";
 
 interface taskProps {
 		text: string;
@@ -9,8 +9,17 @@ interface taskProps {
 }
 
 export default function TaskRoot({ text, keyLocal}: taskProps) {
-	const TaskDeleteButtonNode = <Button icon={<MdDelete />}/>;
+
 	const [TaskDeleteButton, SetTaskDeleteButton] = useState<ReactNode>();
+	const [tasks, setTasks]: any = useContext(TasksContext);
+
+	const TaskDeleteButtonNode = <div onClick={DeleteTaskButtonOnClick}><Button icon={<MdDelete />}/></div>;
+
+
+	function DeleteTaskButtonOnClick() {
+		DeleteTask(keyLocal);
+		RefreshTasks(setTasks);
+	}
 
 	function TaskCheckBoxOnClick() {
 		taskArray[keyLocal].state ? taskArray[keyLocal].state = false : taskArray[keyLocal].state = true;
@@ -20,17 +29,10 @@ export default function TaskRoot({ text, keyLocal}: taskProps) {
 
 	function TaskDeleteButtonRender() {
 		let res: ReactNode;
-
 		taskArray[keyLocal].state ? res = <div></div> : res = TaskDeleteButtonNode;
 		SetTaskDeleteButton(res);
-
-		return res;
 	}
 
-	function DeleteTask(key: number) {
-		delete taskArray[key];
-		console.log("viado");
-	}
 
 	return (
 		<div id={keyLocal} className="

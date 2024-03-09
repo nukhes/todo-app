@@ -1,16 +1,16 @@
 'use client'
 
-import React, { useState, ReactNode } from "react";
+import React, { useState, createContext, useContext, ReactNode } from "react";
 import { IoIosAdd } from "react-icons/io";
 import TaskRoot from "@/components/task/taskRoot";
 import Button from "../ui-misc/button";
 import Input from "../ui-misc/input";
 
-
 export var taskArray: any = [];
+export const TasksContext: any = createContext(undefined);
 
-// Create a new task and push to array
-export function NewTask(value: string, key: string) {
+// Create a new task, push it to array and refresh.
+export function NewTask(TaskUseState: any, value: string, key: string) {
   function Task(this: any) {
     this.text = value;
     this.key = key;
@@ -18,35 +18,40 @@ export function NewTask(value: string, key: string) {
   }
 
   taskArray.push(new (Task as any));
+  RefreshTasks(TaskUseState);
 
   console.log(`task criada com sucesso\n conteudo: ${value}\n key: ${key}`);
   console.log(taskArray);
+}
+
+// Deletes a task by the key and refresh.
+export function DeleteTask(key: string) {
+  delete taskArray[key];
+  console.log(`task id: ${key} deleted`);
+}
+
+export function RefreshTasks(TaskUseState: any) {
+  TaskUseState(() => {
+    var tasksNode: ReactNode = taskArray.map((element: any) => {
+      return <TaskRoot keyLocal={element.key} text={element.text} />;
+    });
+
+    return tasksNode;
+  });
 }
 
 export default function TaskSection() {
   const [tasks, setTasks] = useState();
   const [taskInput, setTaskInput] = useState('');
 
-  function RefreshTasks() {
-    setTasks((): any => {
-
-      var tasksNode: ReactNode = taskArray.map((element: any) => {
-        return <TaskRoot keyLocal={element.key} text={element.text} />;
-      }); 
-    
-      return tasksNode;
-    });
-  }
-
   function CreateNewTaskButton() {
-    RefreshTasks();
-    taskInput.length > 0 ? NewTask(taskInput, taskArray.length) : console.log("insira texto no input da task!");
+    taskInput.length > 0 ? NewTask(setTasks, taskInput, taskArray.length) : console.log("insira texto no input da task!");
   }
 
   return (
     <div className="w-full flex flex-col gap-2">
 
-      <div className="p-2 flex gap-1 w-full justify-center">
+      <div className="flex gap-1 w-full justify-center">
         <Input value={taskInput} onChange={(e: any) => {
           setTaskInput(e.target.value);
         }} placeholder="Nova tarefa..."/>
@@ -54,9 +59,11 @@ export default function TaskSection() {
         <Button icon={<IoIosAdd />} onClick={CreateNewTaskButton}/>
       </div>
 
-      <div className="flex flex-col gap-2 w-full bg-zinc-700 p-3 rounded-lg">
-        {tasks}
-      </div>
+      <TasksContext.Provider value={[tasks, setTasks]}>
+        <div className="flex flex-col gap-2 w-full pt-2">
+          {tasks}
+        </div>
+      </TasksContext.Provider>
 
     </div>
   );

@@ -9,11 +9,8 @@ export default function Home() {
     border-[1px] border-zinc-600 rounded-lg
     text-slate-300
     ">
-      <h1 className="font-semibold text-xl">TO-DO📚</h1>
-
-      
+      <h1 className="font-semibold text-xl pt-2">TO-DO📚</h1>
       <TaskSection />
-
     </main>
   );
 }
