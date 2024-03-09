@@ -12,7 +12,6 @@ export default function TaskRoot({ text, keyLocal}: taskProps) {
 
 	const [TaskDeleteButton, SetTaskDeleteButton] = useState<ReactNode>();
 	const [tasks, setTasks]: any = useContext(TasksContext);
-
 	const TaskDeleteButtonNode = <div onClick={DeleteTaskButtonOnClick}><Button icon={<MdDelete />}/></div>;
 
 
@@ -24,6 +23,7 @@ export default function TaskRoot({ text, keyLocal}: taskProps) {
 	function TaskCheckBoxOnClick() {
 		taskArray[keyLocal].state ? taskArray[keyLocal].state = false : taskArray[keyLocal].state = true;
 		TaskDeleteButtonRender();
+
 		console.log(`task id: ${keyLocal}\ntask state: ${taskArray[keyLocal].state}`);
 	}
 

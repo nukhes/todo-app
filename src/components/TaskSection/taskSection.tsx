@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, createContext, useContext, ReactNode } from "react";
+import React, { useState, createContext, ReactNode } from "react";
 import { IoIosAdd } from "react-icons/io";
 import TaskRoot from "@/components/task/taskRoot";
 import Button from "../ui-misc/button";
@@ -60,7 +60,7 @@ export default function TaskSection() {
       </div>
 
       <TasksContext.Provider value={[tasks, setTasks]}>
-        <div className="flex flex-col gap-2 w-full pt-2">
+        <div className="flex flex-col gap-2 w-full pt-1">
           {tasks}
         </div>
       </TasksContext.Provider>
