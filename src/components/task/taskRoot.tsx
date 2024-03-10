@@ -1,7 +1,7 @@
 import { MdDelete } from "react-icons/md";
-import Button from "../ui-misc/button";
+import Button from "../ui/button";
 import { ReactNode, useContext, useState } from "react";
-import { DeleteTask, RefreshTasks, TasksContext, taskArray } from "../TaskSection/taskSection";
+import { DeleteTask, RefreshTasks, TasksContext, taskArray } from "./taskSection";
 
 interface taskProps {
 		text: string;

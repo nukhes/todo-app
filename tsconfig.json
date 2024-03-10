@@ -21,6 +21,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/components/createTask/createTaskRoot.tsx", "src/components/TaskSection/taskSection.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/components/createTask/createTaskRoot.tsx", "src/components/task/taskSection.tsx"],
   "exclude": ["node_modules"]
 }

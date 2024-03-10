@@ -3,8 +3,8 @@
 import React, { useState, createContext, ReactNode } from "react";
 import { IoIosAdd } from "react-icons/io";
 import TaskRoot from "@/components/task/taskRoot";
-import Button from "../ui-misc/button";
-import Input from "../ui-misc/input";
+import Button from "../ui/button";
+import Input from "../ui/input";
 
 export var taskArray: any = [];
 export const TasksContext: any = createContext(undefined);

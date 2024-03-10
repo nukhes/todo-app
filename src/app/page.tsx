@@ -1,4 +1,4 @@
-import TaskSection from "@/components/TaskSection/taskSection";
+import TaskSection from "@/components/task/taskSection";
 //import CreateTaskRoot from "@/components/createTask/createTaskRoot";  
 
 export default function Home() {
