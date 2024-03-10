@@ -33,7 +33,7 @@ export function DeleteTask(key: string) {
 export function RefreshTasks(TaskUseState: any) {
   TaskUseState(() => {
     var tasksNode: ReactNode = taskArray.map((element: any) => {
-      return <TaskRoot keyLocal={element.key} text={element.text} />;
+      return <TaskRoot key={element.key} keyLocal={element.key} text={element.text} />;
     });
 
     return tasksNode;
