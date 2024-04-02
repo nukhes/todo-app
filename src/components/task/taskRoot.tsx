@@ -1,5 +1,5 @@
-import { MdDelete } from "react-icons/md";
 import Button from "../ui/button";
+import { MdDelete } from "react-icons/md";
 import { ReactNode, useContext, useState } from "react";
 import { DeleteTask, RefreshTasks, TasksContext, taskArray } from "./taskSection";
 
@@ -13,7 +13,6 @@ export default function TaskRoot({ text, keyLocal}: taskProps) {
 	const [TaskDeleteButton, SetTaskDeleteButton] = useState<ReactNode>();
 	const [tasks, setTasks]: any = useContext(TasksContext);
 	const TaskDeleteButtonNode = <div onClick={DeleteTaskButtonOnClick}><Button icon={<MdDelete />}/></div>;
-
 
 	function DeleteTaskButtonOnClick() {
 		DeleteTask(keyLocal);
@@ -32,7 +31,6 @@ export default function TaskRoot({ text, keyLocal}: taskProps) {
 		taskArray[keyLocal].state ? res = <div></div> : res = TaskDeleteButtonNode;
 		SetTaskDeleteButton(res);
 	}
-
 
 	return (
 		<div id={keyLocal} className="
